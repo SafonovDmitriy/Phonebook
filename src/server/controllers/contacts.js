@@ -7,6 +7,7 @@ exports.all = function (req, res) {
             return res.sendStatus(500)
         }
         res.send(docs)
+        return docs
     })
 }
 exports.findAtId = function (req, res) {

@@ -5,7 +5,7 @@ var ObjectID = require('mongodb').ObjectID
 exports.all = function (cb) {
     db.get().collection('contacts').find().toArray(function (err, docs) {
         cb(err, docs)
-
+      
     })
 }
 exports.findAtId = function (id, cb) {

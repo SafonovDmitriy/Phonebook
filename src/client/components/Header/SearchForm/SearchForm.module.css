@@ -1,0 +1,10 @@
+.Wrapper{
+    background-color: blue;
+    height: 5vh;
+
+}
+.Wrapper input{
+    width: 45vw;
+    margin: 1vw;
+}
+

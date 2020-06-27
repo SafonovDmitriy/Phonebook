@@ -1,0 +1,9 @@
+{
+    "apiPrefix": "http://localhost:27017",
+    "serverPort": "3001",
+    "db": {
+        "name": "testTask",
+        "host": "localhost",
+        "port": 27017
+    }
+}

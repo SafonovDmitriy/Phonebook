@@ -4,11 +4,10 @@ var bodyParser = require("body-parser");
 var db = require("./db")
 var app = express();
 var contactsController = require('./controllers/contacts')
-
-
-
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+var cors = require("cors");
+app.use(cors());
+// app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: true }))
 
 // app.get('/', function (req, res) { res.send('<h1>Hello World111</h1>') })
 app.get('/contact', contactsController.all )

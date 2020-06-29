@@ -13,9 +13,3 @@ export const getContacts = async () => {
     return res.data
 }
 
-
-// export const createContact = async (name) => {
-//     let res = await instance.post('contact', {})
-
-
-// }

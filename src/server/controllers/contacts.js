@@ -7,7 +7,7 @@ exports.all = function (req, res) {
             return res.sendStatus(500)
         }
         res.send(docs)
-        return docs
+
     })
 }
 exports.findAtId = function (req, res) {
@@ -27,15 +27,16 @@ exports.create = function (req, res) {
         email: req.body.email,
         photo: req.body.photo,
         number: req.body.number
-    };
+    }
+
     Contacts.create(contact, function (err, docs) {
         if (err) {
             console.error(err)
             return res.sendStatus(500)
         }
         res.send(docs)
-     
-       
+
+
     })
 }
 exports.update = function (req, res) {
@@ -52,7 +53,7 @@ exports.update = function (req, res) {
             console.error(err)
             return res.sendStatus(500)
         }
-       
+
         res.send(docs)
     })
 }

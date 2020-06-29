@@ -17,7 +17,7 @@ exports.create = function (contact, cb) {
     db.get().collection('contacts').insert({
         ...contact, function(err, result) {
             cb(err, result)
-        }
+        } 
     })
 }
 exports.update = function (id, newDate, cb) {

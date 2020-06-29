@@ -1,0 +1,39 @@
+.Wrapper {
+    background-color: yellow;
+    padding: 1vh;
+    /* height: 20vh; */
+}
+
+.oneItem {
+    display: grid;
+    grid-template-areas: "a c";
+    grid-template-columns: 23vw 1fr;
+    background-color: brown;
+    border: solid 1px black;
+    margin: 0.7vh;
+}
+
+.photo img {
+    grid-area: a;
+    width: 20vw;
+    padding: 0.7vw;
+    transition: 0.4s;
+}
+
+.photo img:hover {
+    transform: scale(1.1);
+    margin: 1vw;
+    transition: 0.7s;
+}
+
+.content {
+    padding-left: 2vw;
+    margin: 5px;
+    border: solid 2px yellow;
+    border-radius: 25px;
+    grid-area: c;
+}
+
+.fullName {
+    font-size: 23px;
+}

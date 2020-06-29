@@ -1,19 +1,38 @@
 import React from 'react';
-import s from './App.module.css'
+import { connect } from 'react-redux';
+import { Route, withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+import { getFullContactsList } from '../redux/Reducers/auth-reducers';
+import s from './App.module.css';
+import ContactsListContainer from './ContactsList/ContactsList.Container';
 import HeaderContainer from './Header/Header.Container';
-import { getContacts, createContact } from './../api/api';
 
-function App() {
-  // console.log(getContacts())
-  let fullContacts = []
-  getContacts().then(data => data.map(obj=>fullContacts.push(obj)))
-  console.log(fullContacts)
+const App = (props) => {
+  props.getFullContactsList()
 
   return (
     <div className={s.Wrapper}>
       <HeaderContainer />
+      <Route path='/contacts' render={() => <ContactsListContainer />} />
     </div>
   );
 }
 
-export default App;
+
+let mapStateToProps = (state) => {
+
+  return {
+
+
+  }
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    getFullContactsList: () => dispatch(getFullContactsList())
+  }
+}
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(App);

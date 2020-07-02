@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './SearchForm.module.css'
 import { reduxForm, Field } from 'redux-form';
 
 const Search = (props) => {
-
+    let [toggle, setToggle] = useState(false)
     const onSubmit = (formData) => {
         console.log(formData)
     }
 
-    return <div className={s.Wrapper}>
-        <LoginReduxForm onSubmit={onSubmit} {...props} />
-        {/* <input placeholder="Please,enter Search Number" /><button >Click</button> */}
-    </div >
+    return <>
+        {<div className={toggle ? s.openWrapper : s.closeWrapper}>
+            {toggle ? <div onClick={() => setToggle(false)}><LoginReduxForm onSubmit={onSubmit} {...props} /> </div> : <div onClick={() => setToggle(true)} > <span>Search ↓</span></div>}
+        </div >
+        }
+        {/* {!toggle && } */}
+    </>
 }
-
 
 
 const SearchForm = (props) => {

@@ -1,14 +1,31 @@
 import React from 'react';
 import Header from './Header';
 import Search from './SearchForm/SearchForm';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { setNewContactS } from './../../redux/Selectors/auth-selector';
 
-const HeaderContainer = () => {
+
+const HeaderContainer = (props) => {
 
     
     
     return <>
-        <Header />
+        <Header {...props}/>
         <Search />
     </>
 }
-export default HeaderContainer
+
+
+let mapStateToProps = (state) => {
+    return {
+    }
+}
+let mapDispatchToProps = (dispatch) => {
+    return {
+        setNewContact:(user)=>setNewContactS(dispatch,user)
+    }
+}
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps)
+)(HeaderContainer);

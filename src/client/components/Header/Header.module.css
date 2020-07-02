@@ -1,4 +1,29 @@
-.Wrapper{
+.Wrapper {
+    grid-template-areas: "l n";
+    grid-template-columns: 15vh;
+    display: grid;
     background-color: green;
-    height: 20vh;
+    min-height: 20vh;
+}
+
+.link{
+    
+    list-style: unset;
+    grid-area: l;
+}
+.link li {
+   
+    list-style-type:none
+}
+.link span {
+    color: yellow;
+   border: 1px solid black;
+   padding: 3px;
+   border-radius: 10px;
+   background-color: blueviolet;
+}
+.NewContact{
+    grid-area: n;
+    margin: 0vw 1vh;
+    padding: 0.5vw;
 }

@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { getFullContactsList } from '../redux/Reducers/auth-reducers';
+import { getFullContactsListS } from '../redux/Selectors/auth-selector';
 import s from './App.module.css';
 import ContactsListContainer from './ContactsList/ContactsList.Container';
 import HeaderContainer from './Header/Header.Container';
+
 
 const App = (props) => {
   props.getFullContactsList()
@@ -16,6 +17,10 @@ const App = (props) => {
       <Route path='/contacts' render={() => <ContactsListContainer />} />
     </div>
   );
+
+
+
+
 }
 
 
@@ -29,7 +34,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    getFullContactsList: () => dispatch(getFullContactsList())
+    getFullContactsList: () => getFullContactsListS(dispatch)
   }
 }
 export default compose(

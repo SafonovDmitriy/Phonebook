@@ -10,6 +10,7 @@
     grid-template-columns: 23vw 1fr;
     background-color: brown;
     border: solid 1px black;
+    border-radius: 25px;
     margin: 0.7vh;
 }
 
@@ -22,8 +23,8 @@
 
 .photo img:hover {
     transform: scale(1.1);
-    margin: 1vw;
     transition: 0.7s;
+    margin: 1vw;
 }
 
 .content {

@@ -1,10 +1,25 @@
-.Wrapper{
+.openWrapper, .closeWrapper {
     background-color: blue;
-    height: 5vh;
-
 }
-.Wrapper input{
+
+.openWrapper {
+    height: 5vh;
+    transition: 0.4s;
+}
+
+.openWrapper input {
     width: 45vw;
     margin: 1vw;
 }
 
+.closeWrapper {
+    height: 1.65vh;
+    transition: 0.7s;
+}
+
+.closeWrapper  {
+
+    text-align: center;
+    color: red;
+    font-size: 14px;
+}

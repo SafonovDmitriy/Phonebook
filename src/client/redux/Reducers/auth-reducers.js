@@ -1,5 +1,5 @@
 
-import { getContacts } from './../../api/api';
+import { getContacts, setNewContactAPI } from './../../api/api';
 
 
 
@@ -24,6 +24,19 @@ export const getFullContactsList = () => {
     return async (dispatch) => {
         let contact = await getContacts()
         dispatch(getAllContacts(contact))
+    }
+}
+export const setNewContact = (user) => {
+    return (dispatch) => {
+        setNewContactAPI(user).then(res => {
+            console.log(res)
+            getContacts().then(res=>
+                dispatch(getAllContacts(res))
+            )
+            
+        })
+
+
     }
 }
 

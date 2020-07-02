@@ -14,11 +14,12 @@ exports.findAtId = function (id, cb) {
     })
 }
 exports.create = function (contact, cb) {
-    db.get().collection('contacts').insert({
-        ...contact, function(err, result) {
+    db.get().collection('contacts').insert(
+        {...contact},
+        function(err, result) {
             cb(err, result)
         } 
-    })
+    )
 }
 exports.update = function (id, newDate, cb) {
     db.get().collection('contacts').findOne({ _id: ObjectID(id) }, function (err, docs) {

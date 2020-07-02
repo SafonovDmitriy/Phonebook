@@ -1,0 +1,21 @@
+.form {
+    margin-left: 5px;
+    padding: 0.5vw;
+    border: solid 2px black;
+    border-radius: 15px;
+    background-color: coral;
+    display: inline-grid;
+    transition: 1.4s;
+}
+.form span{
+   text-align: center;
+}
+.form input{
+    margin-bottom: 2px;
+    padding: 2px;
+    text-align: center;
+    border-radius: 25px;
+    border: 1px black solid;
+    background-color: white;
+    color: black;
+}

@@ -12,8 +12,14 @@ const ContactsList = (props) => {
                 </div>
                 <div className={s.content}>
                     <div className={s.fullName}>
-                        <h4>FullName: {contact.name + ' ' + contact.surename}</h4>
+                        <h4>FullName: {contact.name && contact.name + " "}{contact.surename && contact.surename + " "}</h4>
                     </div>
+                    <div className={s.info}>
+                        <p>Company: {contact.company ? contact.company : <button onClick={() => { console.log(contact._id) }}>Add Company</button>}</p>
+                        <p>Email: {contact.email ? contact.email : <button onClick={() => { console.log(contact._id) }}>Add Email</button>}</p>
+                        <p>{contact.number2 ? "Numbers : " + contact.number : "Number:" + contact.number}</p>
+                    </div>
+
                 </div>
             </div>
         }

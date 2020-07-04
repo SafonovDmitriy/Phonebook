@@ -2,10 +2,12 @@ import React from 'react';
 import s from './ContactsList.module.css';
 
 const ContactsList = (props) => {
+
     console.log(props)
     return <div className={s.Wrapper}>
 
         {props.allContact.map(contact => {
+            console.log(contact)
             return <div className={s.oneItem}>
                 <div className={s.photo}>
                     <img alt={contact.name + ' ' + contact.surename} src="https://images.ua.prom.st/1440764527_saharnaya-kartinka-lyubov.jpg" />
@@ -17,7 +19,7 @@ const ContactsList = (props) => {
                     <div className={s.info}>
                         <p>Company: {contact.company ? contact.company : <button onClick={() => { console.log(contact._id) }}>Add Company</button>}</p>
                         <p>Email: {contact.email ? contact.email : <button onClick={() => { console.log(contact._id) }}>Add Email</button>}</p>
-                        <p>{contact.number2 ? "Numbers : " + contact.number : "Number:" + contact.number}</p>
+                        <p>{contact.numbers.length > 1 ? "Numbers : " + contact.numbers.map(item => { return item }) : "Number:" + contact.numbers[0]}</p>
                     </div>
 
                 </div>

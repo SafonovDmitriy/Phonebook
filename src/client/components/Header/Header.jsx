@@ -10,8 +10,20 @@ const Header = React.memo((props) => {
     let [arrLink] = useState([
         { content: 'Contacts', href: '/contacts' },
     ])
-    const onSubmit = (formData) => {
-        props.setNewContact(formData)
+
+    const onSubmit = ({ name, surename, email, company, ...formData }) => {
+
+
+
+        props.setNewContact({
+            name: name,
+            surename: surename,
+            email: email,
+            company: company,
+            numbers: Object
+                .entries(formData)
+                .map(entry => (entry[1]))
+        })
     }
 
     return <div className={s.Wrapper}>

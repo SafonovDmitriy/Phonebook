@@ -8,39 +8,49 @@ import { CastomInput } from './../../FormsControls/Form';
 
 const NewContact = (props) => {
 
-    let [countNubmer, setcountNumber] = useState(2)
-    let [arrInput, setArrInput] = useState(
+    let [arrInput] = useState(
         [
             { name: "name", placeholder: "Name", validate: [textOnly] },
             { name: "surename", placeholder: "Surename", validate: [textOnly] },
             { name: "email", placeholder: "Email", validate: [] },
             { name: "company", placeholder: "Company", validate: [textOnly] },
-            { name: "number", placeholder: "Number", validate: [onlyNumber] },
-        ])
 
+        ])
+    let [arrNumbers, setArrNumbers] = useState(
+        [
+            { name: "number", placeholder: "Number", validate: [onlyNumber] },
+        ]
+
+
+
+    )
+    function updateForm() {
+        let arr = []
+        arrInput.map(item => { return arr.push(item) })
+        arrNumbers.map(item => { return arr.push(item) })
+        return arr
+    }
+
+    function newForm() {
+        return updateForm().map(item => {
+            return <>
+                <Field validate={item.validate} placeholder={item.placeholder} name={item.name} component={CastomInput} />
+                <span className={s.errorField}></span>
+            </>
+        })
+
+    }
 
     return <form onSubmit={props.handleSubmit} className={s.form}>
         <h2>Add Contact Form</h2>
-        {arrInput.map(item => {
-
-            return (<>
-                <Field validate={item.validate} placeholder={item.placeholder} name={item.name} component={CastomInput} />
-                <span className={s.errorField}></span>
-                </>
-            )
-        })}
+        {newForm()}
         <span onClick={() => {
-
-            let newArr = []
-            arrInput.map(item => { newArr.push(item); return undefined })
-            newArr.push({ name: "number" + String(countNubmer), placeholder: "Number " + String(countNubmer), validate: [onlyNumber] })
-            setArrInput(newArr)
-            setcountNumber(countNubmer + 1)
-            return console.log("Successfully added a new number")
+            let newNubmersArr = []
+            arrNumbers.map(item => { return newNubmersArr.push(item) })
+            newNubmersArr.push({ name: "number" + String(arrNumbers.length + 1), placeholder: "Number " + String(arrNumbers.length + 1), validate: [onlyNumber] })
+            setArrNumbers(newNubmersArr)
         }
         }>+another number</span>
-
-
         <button >Click</button>
     </form >
 }

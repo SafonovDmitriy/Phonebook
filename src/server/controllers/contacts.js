@@ -20,15 +20,6 @@ exports.findAtId = function (req, res) {
     })
 }
 exports.create = function (req, res) {
-    // var contact = {
-    //     name: req.body.name,
-    //     surename: req.body.surename,
-    //     company: req.body.company,
-    //     email: req.body.email,
-    //     photo: req.body.photo,
-    //     number: req.body.number
-    // }
-
     Contacts.create({ ...req.body }, function (err, docs) {
         if (err) {
             console.error(err)

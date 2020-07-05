@@ -6,16 +6,18 @@ import { getFullContactsListS } from '../redux/Selectors/auth-selector';
 import s from './App.module.css';
 import ContactsListContainer from './ContactsList/ContactsList.Container';
 import HeaderContainer from './Header/Header.Container';
-
+import { Container } from 'semantic-ui-react'
 
 const App = (props) => {
   props.getFullContactsList()
 
   return (
-    <div className={s.Wrapper}>
-      <HeaderContainer />
-      <Route path='/contacts' render={() => <ContactsListContainer />} />
-    </div>
+    <Container>
+      <div className={s.Wrapper}>
+        <HeaderContainer />
+        <Route path='/contacts' render={() => <ContactsListContainer />} />
+      </div>
+    </Container>
   );
 
 

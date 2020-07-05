@@ -1,9 +1,8 @@
 import React from 'react';
-import Header from './Header';
-import Search from './SearchForm/SearchForm';
-import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { setNewContactS } from './../../redux/Selectors/auth-selector';
+import Header from './Header';
 
 
 const HeaderContainer = (props) => {
@@ -12,7 +11,7 @@ const HeaderContainer = (props) => {
     
     return <>
         <Header {...props}/>
-        <Search />
+        {/* <Search /> */}
     </>
 }
 

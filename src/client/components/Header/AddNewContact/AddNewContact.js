@@ -3,8 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import s from './AddNewContact.module.css';
 import { requiredFuild, textOnly, onlyNumber } from './../../../../utils/validators/validators';
 import { CastomInput } from './../../FormsControls/Form';
-
-
+import { Form, Input, Button } from 'semantic-ui-react'
 
 const NewContact = (props) => {
 
@@ -33,26 +32,46 @@ const NewContact = (props) => {
 
     function newForm() {
         return updateForm().map(item => {
-            return <>
-                <Field validate={item.validate} placeholder={item.placeholder} name={item.name} component={CastomInput} />
-                <span className={s.errorField}></span>
-            </>
+        
+
+
+
+            return <Form.Field
+                id='form-input-control-first-name'
+                control={Input}
+            // label={item.placeholder}
+            ><Field validate={item.validate} placeholder={item.placeholder} name={item.name} component={CastomInput} /></Form.Field >
+
+
         })
 
     }
 
-    return <form onSubmit={props.handleSubmit} className={s.form}>
-        <h2>Add Contact Form</h2>
-        {newForm()}
-        <span onClick={() => {
-            let newNubmersArr = []
-            arrNumbers.map(item => { return newNubmersArr.push(item) })
-            newNubmersArr.push({ name: "number" + String(arrNumbers.length + 1), placeholder: "Number " + String(arrNumbers.length + 1), validate: [onlyNumber] })
-            setArrNumbers(newNubmersArr)
-        }
-        }>+another number</span>
-        <button >Click</button>
-    </form >
+    return <Form>
+
+        <form onSubmit={props.handleSubmit} className={s.form}>
+            <h2>Add Contact Form</h2>
+
+            <Form>
+                {newForm()}
+                <Form.Field
+                    id='form-button-control-public'
+                    control={Button}
+                    content='Confirm'
+
+                />
+            </Form>
+            <span onClick={() => {
+                let newNubmersArr = []
+                arrNumbers.map(item => { return newNubmersArr.push(item) })
+                newNubmersArr.push({ name: "number" + String(arrNumbers.length + 1), placeholder: "Number " + String(arrNumbers.length + 1), validate: [onlyNumber] })
+                setArrNumbers(newNubmersArr)
+            }
+            }>+another number</span>
+
+        </form >
+
+    </Form>
 }
 
 export const AddContactRF = reduxForm({

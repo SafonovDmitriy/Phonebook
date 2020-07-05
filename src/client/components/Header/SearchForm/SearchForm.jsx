@@ -13,7 +13,6 @@ const Search = (props) => {
             {toggle ? <div onClick={() => setToggle(false)}><LoginReduxForm onSubmit={onSubmit} {...props} /> </div> : <div onClick={() => setToggle(true)} > <span>Search ↓</span></div>}
         </div >
         }
-        {/* {!toggle && } */}
     </>
 }
 

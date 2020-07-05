@@ -1,22 +1,19 @@
 .Wrapper {
     background-color: yellow;
-    padding: 1vh;
-    /* height: 20vh; */
 }
 
 .oneItem {
     display: grid;
     grid-template-areas: "a c";
-    grid-template-columns: 23vw 1fr;
+    grid-template-columns: 13vw 1fr;
     background-color: brown;
     border: solid 1px black;
     border-radius: 25px;
-    margin: 0.7vh;
 }
 
 .photo img {
     grid-area: a;
-    width: 20vw;
+    width: 12vw;
     padding: 0.7vw;
     transition: 0.4s;
 }
@@ -24,10 +21,11 @@
 .photo img:hover {
     transform: scale(1.1);
     transition: 0.7s;
-    margin: 1vw;
+    margin: 0.5vw;
 }
 
 .content {
+    padding-top: min(1vh);
     padding-left: 2vw;
     margin: 5px;
     border: solid 2px yellow;

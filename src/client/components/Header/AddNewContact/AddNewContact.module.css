@@ -11,11 +11,11 @@
    text-align: center;
 }
 .form input{
-    margin-bottom: 2px;
-    padding: 2px;
-    text-align: center;
-    border-radius: 25px;
-    border: 1px black solid;
-    background-color: white;
-    color: black;
+    margin-bottom: 5px;
+    /* padding: 2px; */
+    /* text-align: center; */
+    /* border-radius: 25px; */
+    /* border: 1px black solid; */
+    /* background-color: white; */
+    /* color: black; */
 }

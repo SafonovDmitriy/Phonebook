@@ -2,14 +2,11 @@ import React from 'react';
 import ContactsList from './ContactsList';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getAllContact } from './../../redux/Selectors/auth-selector';
+import { getAllContact, deleteContactS } from './../../redux/Selectors/auth-selector';
 
 const ContactsListContainer = (props) => {
-
-
-
     return <div>
-        <ContactsList {...props}/>
+        <ContactsList {...props} />
     </div>
 }
 let mapStateToProps = (state) => {
@@ -19,7 +16,7 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-
+        deleteContact: (id) => deleteContactS(dispatch, id)
     }
 }
 export default compose(

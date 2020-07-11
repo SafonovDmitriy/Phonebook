@@ -9,6 +9,7 @@ const Headerr = React.memo((props) => {
     let [toggle, setToggle] = useState(false)
     let [arrLink] = useState([
         { content: 'Contacts', href: '/contacts' },
+
     ])
 
 
@@ -28,15 +29,18 @@ const Headerr = React.memo((props) => {
     }
     return <Header className={s.Wrapper}>
         <div className={s.link}>
-            <ul>
-                {arrLink.map(links => {
-                    return <li><Link to={links.href}><span>{links.content}</span></Link></li>
-                })}
-            </ul>
+            {arrLink.map(links => {
+                return <div className={s.oneItem}>
+                    <Button className={s.linkButton}><Link to={links.href}>{links.content}</Link></Button>
+                </div>
+
+            })}
         </div>
         <div className={s.NewContact}>
-            <Button onClick={() => setToggle(toggle ? false : true)}>{toggle ? "Close" : "Add Contact"}</Button>
-            {toggle && <AddContactRF onSubmit={onSubmit} />}
+            <div className={s.newContactBox}>
+                <Button className={s.newContactButton} onClick={() => setToggle(toggle ? false : true)}>{toggle ? "Close" : "Add Contact"}</Button>
+                {toggle && <AddContactRF className={s.newContactForm} onSubmit={onSubmit} />}
+                </div>
         </div>
         <div className={s.Search}>
             <SearchReduxForm onSubmit={onSubmitSearch} />
@@ -50,7 +54,7 @@ const SearchForm = (props) => {
     return <>
         <form onSubmit={props.handleSubmit} className={s.form}>
 
-            <Field className={s.searchInput} placeholder="" name={"search"} component="input" />
+            <Field className={s.searchInput} placeholder="Search" name={"search"} component="input" />
             <Button className={s.searchButton} circular icon='search' />
 
         </form >

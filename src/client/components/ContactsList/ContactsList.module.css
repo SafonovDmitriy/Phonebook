@@ -4,7 +4,7 @@
 
 .oneItem {
     display: grid;
-    grid-template-areas: "a c";
+    grid-template-areas: "a c del";
     grid-template-columns: 13vw 1fr;
     background-color: brown;
     border: solid 1px black;
@@ -35,4 +35,12 @@
 
 .fullName {
     font-size: 23px;
+}
+.deleteButton{
+    grid-area: del;
+    height: 20px;
+    margin-top: 5px;
+}
+.deal{
+    /* background-color: blue; */
 }

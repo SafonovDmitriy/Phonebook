@@ -32,7 +32,7 @@ const NewContact = (props) => {
 
     function newForm() {
         return updateForm().map(item => {
-        
+
 
 
 
@@ -47,31 +47,33 @@ const NewContact = (props) => {
 
     }
 
-    return <Form>
+    return <div className={s.newForm}>
+        <Form>
 
-        <form onSubmit={props.handleSubmit} className={s.form}>
-            <h2>Add Contact Form</h2>
+            <form onSubmit={props.handleSubmit} className={s.form}>
+                <h2>Add Contact Form</h2>
 
-            <Form>
-                {newForm()}
-                <Form.Field
-                    id='form-button-control-public'
-                    control={Button}
-                    content='Confirm'
+                <Form>
+                    {newForm()}
+                    <Form.Field
+                        id='form-button-control-public'
+                        control={Button}
+                        content='Confirm'
 
-                />
-            </Form>
-            <span onClick={() => {
-                let newNubmersArr = []
-                arrNumbers.map(item => { return newNubmersArr.push(item) })
-                newNubmersArr.push({ name: "number" + String(arrNumbers.length + 1), placeholder: "Number " + String(arrNumbers.length + 1), validate: [onlyNumber] })
-                setArrNumbers(newNubmersArr)
-            }
-            }>+another number</span>
+                    />
+                </Form>
+                <span onClick={() => {
+                    let newNubmersArr = []
+                    arrNumbers.map(item => { return newNubmersArr.push(item) })
+                    newNubmersArr.push({ name: "number" + String(arrNumbers.length + 1), placeholder: "Number " + String(arrNumbers.length + 1), validate: [onlyNumber] })
+                    setArrNumbers(newNubmersArr)
+                }
+                }>+another number</span>
 
-        </form >
+            </form >
 
-    </Form>
+        </Form>
+    </div>
 }
 
 export const AddContactRF = reduxForm({

@@ -1,4 +1,4 @@
-import { getFullContactsList, setNewContact } from "../Reducers/auth-reducers"
+import { getFullContactsList, setNewContact, deleteContactT } from "../Reducers/auth-reducers"
 
 
 
@@ -10,6 +10,9 @@ export const getFullContactsListS = (dispatch) => {
 }
 export const setNewContactS = (dispatch, user) => {
     return dispatch(setNewContact(user))
+}
 
-
+export const deleteContactS = (dispatch, id) => {
+    console.log("Selector")
+    return dispatch(deleteContactT(id))
 }

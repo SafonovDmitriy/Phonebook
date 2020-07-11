@@ -1,70 +1,58 @@
 .Wrapper {
     grid-template-areas: "l n s";
-    grid-template-columns: 15vh;
+    grid-template-columns: 15%;
     display: grid;
     background-color: green;
     /* min-height: 10vh; */
 }
 
+.link, .NewContact, .oneItem, .Search, .newContactBox {
+    margin: 1vh 0 1vh 1vh;
+}
+.oneItem {
+    text-align: left;
+}
 .link {
-    list-style: unset;
+    /* background-color: blue; */
     grid-area: l;
 }
 
-.link li {
-    list-style-type: none
+.newContactBox {
+    display: grid;
+    grid-template-areas: "onenBut form";
+    grid-template-columns: 35%;
 }
 
-.link span {
-    color: yellow;
-    border: 1px solid black;
-    padding: 3px;
-    border-radius: 10px;
-    background-color: blueviolet;
+.newContactForm {
+    margin: 0 auto 0 auto;
+    grid-area: form;
 }
 
-.NewContact {
-    grid-area: n;
-    margin: 0vw 1vh;
-    padding: 0.5vw;
+.newContactButton {
+    grid-area: onenBut;
+    max-height: 36px;
 }
 
 .Search {
-    /* background-color: blue; */
     grid-area: s;
-    /* max-height: 7vh; */
-    margin: 1vh 0.7vh;
+    max-height: 7vh;
 }
 
 .form {
-    display: grid;
-    grid-template-areas: "i b";
+    float: right;
+    margin: 1vh auto;
+    /* grid-template-areas: "i b"; */
 }
 
 .searchInput {
     grid-area: i;
-    /* margin:1vh 0.7vh; */
-    float: right;
-    max-width: 100%;
+    margin-right: 5px;
     -webkit-box-flex: 1;
-    -ms-flex: 1 0 auto;
     flex: 1 0 auto;
-    outline: 0;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    text-align: left;
-    line-height: 1.21428571em;
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     padding: .47857143em 1em;
-    background: #fff;
     border: 1px solid rgba(34, 36, 38, .15);
-    color: rgba(0, 0, 0, .87);
     border-radius: 25px;
-    -webkit-transition: border-color .1s ease, -webkit-box-shadow .1s ease;
-    transition: border-color .1s ease, -webkit-box-shadow .1s ease;
-    transition: box-shadow .1s ease, border-color .1s ease;
-    transition: box-shadow .1s ease, border-color .1s ease, -webkit-box-shadow .1s ease;
-    -webkit-box-shadow: none;
-    box-shadow: none;
 }
 
 .searchButton {

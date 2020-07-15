@@ -1,5 +1,5 @@
 
-import { getContacts, setNewContactAPI, deleteContactAPI } from './../../api/api';
+import { getContacts, setNewContactAPI, deleteContactAPI, updateContactAPI } from './../../api/api';
 
 
 
@@ -31,6 +31,11 @@ const AuthReducer = (state = initialState, active) => {
                     return undefined
                 })
             }
+        case "UPDATE_CONTACT":
+            console.log(active.newData)
+            return {
+
+            }
 
 
 
@@ -41,6 +46,7 @@ const AuthReducer = (state = initialState, active) => {
 export const getAllContacts = (contacts) => ({ type: "GET_ALL_CONTACTS", contacts })
 // export const setNewContacts = (newContact) => ({ type: "SET_NEW_CONTACT", newContact })
 export const deleteContact = (idContact) => ({ type: "DELETE_CONTACT", idContact })
+export const updateContact = (idContact, newData) => ({ type: "UPDATE_CONTACT", idContact, newData })
 
 
 export const getFullContactsList = () => {
@@ -64,6 +70,17 @@ export const deleteContactT = (id) => {
 
         deleteContactAPI(id).then(res => {
             dispatch(deleteContact(id));
+        })
+
+
+    }
+}
+export const updateContactT = (id, newData) => {
+
+    return (dispatch) => {
+
+        updateContactAPI(id, newData).then(res => {
+            dispatch(updateContact(id, newData));
         })
 
 

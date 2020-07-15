@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import s from './ContactsList.module.css';
-import { Image, List, Button } from 'semantic-ui-react'
-const ContactsList = React.memo((props) => {
+import { Image, List, Button, Form } from 'semantic-ui-react'
+import { reduxForm, Field } from 'redux-form';
+import { CastomInput } from './../FormsControls/Form';
 
 
-    const [idToggle, setToggle] = useState(undefined)
-    const [idEdit, setEdit] = useState(undefined)
-
-
-    const editFunc = (contact) => {
-        setEdit(contact._id)
-        console.log(idEdit)
-    }
+const ContactsList = React.memo(({ idToggle, setToggle, idEdit, setEdit, editContact, setEditContact, arrInput, arrNumbers, setArrNumbers, onSubmit, initArr, addNumber, ...props }) => {
 
     return <div className={s.Wrapper}>
         {props.allContact.map(contact => {
@@ -42,26 +36,75 @@ const ContactsList = React.memo((props) => {
                 </div> :
                     <div>
 
-
+                        <EditReduxForm
+                            onSubmit={onSubmit}
+                            contact={contact}
+                            setEdit={setEdit}
+                            setEditContact={setEditContact}
+                            editContact={editContact}
+                            setArrNumbers={setArrNumbers}
+                            arrInput={arrInput}
+                            arrNumbers={arrNumbers}
+                            addNumber={addNumber}
+                            {...props} />
 
                     </div>}
                 <div>
-                    <Button onClick={() => { editFunc(contact) }}>Edit</Button>
+                    {idEdit !== contact._id && < Button onClick={() => initArr(contact)}>Edit</Button>}
                 </div>
-                <div className={s.deleteButton} onClick={() => { setToggle(contact._id); }}>
+                <div className={s.deleteButton} onClick={() => { setEdit(undefined); setToggle(contact._id); }}>
                     {idToggle !== contact._id && < List.Item >
                         <List.Icon name='delete' />
                     </ List.Item>}
                 </div>
-                {idToggle === contact._id && <div className={s.deal}><h3>Do you really go to remove this contact?</h3>
-                    <Button onClick={() => { props.deleteContact(contact._id); setToggle(undefined) }}>OK</Button>
-                    <Button onClick={() => setToggle(undefined)}>Сancel</Button>
+                {
+                    idToggle === contact._id && <div className={s.deal}><h3>Do you really go to remove this contact?</h3>
+                        <Button onClick={() => { props.deleteContact(contact._id); setToggle(undefined) }}>OK</Button>
+                        <Button onClick={() => setToggle(undefined)}>Сancel</Button>
 
-                </div>}
+                    </div>
+                }
             </div>
         }
         )}
     </div >
 
 })
+
+const editForm = ({ contact, setEditContact, setArrNumbers, arrInput, arrNumbers, editContact, addNumber, setInitialValue, ...props }) => {
+
+
+    return <form onSubmit={props.handleSubmit} _id={contact._id} className={s.form}  >
+        <Form>
+            {arrInput.map(item => {
+                return <Form.Field>
+                    <label>{item.label}</label>
+                    <Field name={item.name} validate={item.validate} component={CastomInput} />
+                </Form.Field>
+            })}
+            {arrNumbers.map(item => {
+
+                return <Form.Field>
+                    <label>{item.name}</label>
+                    <Field name={item.name} validate={item.validate} component={CastomInput} />
+                </Form.Field>
+            })}
+            <div className={s.buttoms}>
+                <Button onClick={() => setInitialValue(props.initialize)}>Saved data</Button>
+                <Button onClick={() => addNumber()
+                }>Add Number</Button>
+                <Button >Save</Button>
+                <Button onClick={() => { props.setEdit(undefined) }}>Сancel</Button>
+            </div>
+        </Form>
+    </form >
+}
+
+
+const EditReduxForm = reduxForm({
+    form: 'edit',
+    // enableReinitialize: true,
+
+
+})(editForm)
 export default ContactsList

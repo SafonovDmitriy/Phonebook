@@ -5,7 +5,7 @@ import { Message } from 'semantic-ui-react'
 export const CastomInput = ({ input, meta, ...props }) => {
     return (
         <div>
-            <input className={meta.touched && meta.error ? s.errorField : ''}{...input} {...props}></input>
+            <input className={meta.touched && meta.error ? s.errorField : ''}{...input} {...props} ></input>
             {meta.touched && meta.error ?
 
                 <Message negative>

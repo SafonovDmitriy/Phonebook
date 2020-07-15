@@ -36,11 +36,16 @@
 .fullName {
     font-size: 23px;
 }
-.deleteButton{
+
+.deleteButton {
     grid-area: del;
     height: 20px;
     margin-top: 5px;
 }
-.deal{
-    /* background-color: blue; */
+
+.buttoms {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly;
 }

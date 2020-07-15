@@ -13,12 +13,13 @@ const Headerr = React.memo((props) => {
     ])
 
 
-    const onSubmit = ({ name, surename, email, company, ...formData }) => {
+    const onSubmit = ({ name, surename, email, company, image, ...formData }) => {
         props.setNewContact({
             name: name,
             surename: surename,
             email: email,
             company: company,
+            image: image,
             numbers: Object
                 .entries(formData)
                 .map(entry => (entry[1]))
@@ -40,7 +41,7 @@ const Headerr = React.memo((props) => {
             <div className={s.newContactBox}>
                 <Button className={s.newContactButton} onClick={() => setToggle(toggle ? false : true)}>{toggle ? "Close" : "Add Contact"}</Button>
                 {toggle && <AddContactRF className={s.newContactForm} onSubmit={onSubmit} />}
-                </div>
+            </div>
         </div>
         <div className={s.Search}>
             <SearchReduxForm onSubmit={onSubmitSearch} />

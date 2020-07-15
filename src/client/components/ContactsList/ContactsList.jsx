@@ -3,7 +3,7 @@ import s from './ContactsList.module.css';
 import { Image, List, Button, Form } from 'semantic-ui-react'
 import { reduxForm, Field } from 'redux-form';
 import { CastomInput } from './../FormsControls/Form';
-
+const defaultAvatar = "https://images.ua.prom.st/1440764527_saharnaya-kartinka-lyubov.jpg"
 
 const ContactsList = React.memo(({ idToggle, setToggle, idEdit, setEdit, editContact, setEditContact, arrInput, arrNumbers, setArrNumbers, onSubmit, initArr, addNumber, ...props }) => {
 
@@ -13,7 +13,7 @@ const ContactsList = React.memo(({ idToggle, setToggle, idEdit, setEdit, editCon
             return <div className={s.oneItem}>
 
                 <div className={s.photo}>
-                    <Image alt={contact.name + ' ' + contact.surename} src="https://images.ua.prom.st/1440764527_saharnaya-kartinka-lyubov.jpg" />
+                    <Image alt={contact.name + ' ' + contact.surename} src={!contact.image  ? defaultAvatar : contact.image} />
                 </div>
                 {idEdit !== contact._id ? <div className={s.content}>
                     <div className={s.fullName}>

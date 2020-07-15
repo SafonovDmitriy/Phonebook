@@ -18,6 +18,7 @@ const ContactsListContainer = (props) => {
             { name: "surename", validate: [textOnly], label: "Surename" },
             { name: "email", validate: [], label: "Email" },
             { name: "company", validate: [textOnly], label: "Company" },
+            { name: "image", label: "URL", validate: [] },
         ])
     const [arrNumbers, setArrNumbers] = useState(
         [

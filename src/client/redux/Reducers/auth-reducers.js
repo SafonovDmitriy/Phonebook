@@ -23,14 +23,16 @@ const AuthReducer = (state = initialState, active) => {
                 })
             }
         case "UPDATE_CONTACT":
-
+            let newContacts = []
+            state.allContacts.map(item => {
+                if (item._id === active.idContact) {
+                    return newContacts.push({ _id: active.idContact, ...active.newData })
+                } else {
+                    return newContacts.push(item)
+                }
+            })
             return {
-                ...state, allContact: state.allContacts.map(item => {
-                    if (item._id === active.idContact) {
-                        return item = active.newData
-                    }
-                    return undefined
-                })
+                ...state, allContacts: newContacts
             }
 
 
@@ -60,27 +62,19 @@ export const setNewContact = (user) => {
     }
 }
 export const deleteContactT = (id) => {
-
     return (dispatch) => {
-
         deleteContactAPI(id).then(res => {
             dispatch(deleteContact(id));
         })
-
-
     }
 }
-export const updateContactT = (id, newData) => {
 
+export const updateContactT = (id, newData) => {
     return async (dispatch) => {
         let res = await updateContactAPI(id, newData)
         if (res.status === 200) {
             dispatch(updateContact(id, newData))
         }
-
-
-
-
     }
 }
 

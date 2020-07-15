@@ -9,15 +9,16 @@ const NewContact = (props) => {
 
     let [arrInput] = useState(
         [
-            { name: "name", placeholder: "Name", validate: [textOnly,requiredFuild] },
+            { name: "name", placeholder: "Name", validate: [textOnly, requiredFuild] },
             { name: "surename", placeholder: "Surename", validate: [textOnly] },
             { name: "email", placeholder: "Email", validate: [] },
             { name: "company", placeholder: "Company", validate: [textOnly] },
+            { name: "image", placeholder: "URLforAvatar", validate: [] },
 
         ])
     let [arrNumbers, setArrNumbers] = useState(
         [
-            { name: "number", placeholder: "Number", validate: [onlyNumber,requiredFuild] },
+            { name: "number", placeholder: "Number", validate: [onlyNumber, requiredFuild] },
         ]
 
 

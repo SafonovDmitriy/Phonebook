@@ -13,15 +13,6 @@ const AuthReducer = (state = initialState, active) => {
             return {
                 ...state, allContacts: active.contacts
             }
-        // case "SET_NEW_CONTACT":
-        //     let newArr = []
-        //     state.allContacts.map(item => {
-        //         return newArr.push(item)
-        //     })
-        //     newArr.push(active.newContact)
-        //     return {
-        //         ...state, allContacts: newArr
-        //     }
         case "DELETE_CONTACT":
             return {
                 ...state, allContacts: state.allContacts.filter(item => {
@@ -32,9 +23,14 @@ const AuthReducer = (state = initialState, active) => {
                 })
             }
         case "UPDATE_CONTACT":
-            console.log(active.newData)
-            return {
 
+            return {
+                ...state, allContact: state.allContacts.map(item => {
+                    if (item._id === active.idContact) {
+                        return item = active.newData
+                    }
+                    return undefined
+                })
             }
 
 
@@ -44,7 +40,6 @@ const AuthReducer = (state = initialState, active) => {
 }
 
 export const getAllContacts = (contacts) => ({ type: "GET_ALL_CONTACTS", contacts })
-// export const setNewContacts = (newContact) => ({ type: "SET_NEW_CONTACT", newContact })
 export const deleteContact = (idContact) => ({ type: "DELETE_CONTACT", idContact })
 export const updateContact = (idContact, newData) => ({ type: "UPDATE_CONTACT", idContact, newData })
 
@@ -77,11 +72,13 @@ export const deleteContactT = (id) => {
 }
 export const updateContactT = (id, newData) => {
 
-    return (dispatch) => {
+    return async (dispatch) => {
+        let res = await updateContactAPI(id, newData)
+        if (res.status === 200) {
+            dispatch(updateContact(id, newData))
+        }
 
-        updateContactAPI(id, newData).then(res => {
-            dispatch(updateContact(id, newData));
-        })
+
 
 
     }

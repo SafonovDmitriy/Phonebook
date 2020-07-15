@@ -5,7 +5,7 @@ var ObjectID = require('mongodb').ObjectID
 exports.all = function (cb) {
     db.get().collection('contacts').find().toArray(function (err, docs) {
         cb(err, docs)
-      
+
     })
 }
 exports.findAtId = function (id, cb) {
@@ -15,10 +15,10 @@ exports.findAtId = function (id, cb) {
 }
 exports.create = function (contact, cb) {
     db.get().collection('contacts').insert(
-        {...contact},
-        function(err, result) {
+        { ...contact },
+        function (err, result) {
             cb(err, result)
-        } 
+        }
     )
 }
 exports.update = function (id, newDate, cb) {
@@ -26,14 +26,7 @@ exports.update = function (id, newDate, cb) {
 
         db.get().collection('contacts').updateOne(
             { _id: ObjectID(id) },
-            {
-                name: newDate.name ? newDate.name : docs.name,
-                surename: newDate.surename ? newDate.surename : docs.surename,
-                company: newDate.company ? newDate.company : docs.company,
-                email: newDate.email ? newDate.email : docs.email,
-                photo: newDate.photo ? newDate.photo : docs.photo,
-                number: newDate.number ? newDate.number : docs.number
-            },
+            { ...newDate },
             function (err, result) {
                 cb(err, result)
             })

@@ -20,12 +20,13 @@ export const deleteContactAPI = async (idContact) => {
     instance.delete(`contact/${idContact}`).then(res => {
         return res
     })
-
 }
+
 export const updateContactAPI = async (idContact, newDate) => {
-    instance.put(`contact/${idContact}`, { newDate }).then(res => {
-        return res
-    })
+
+    let res = await instance.put(`contact/${idContact}`, { newDate })
+    return res
+
 
 }
 

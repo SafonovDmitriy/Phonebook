@@ -31,11 +31,10 @@ exports.create = function (req, res) {
     })
 }
 exports.update = function (req, res) {
-
     Contacts.update(req.params.id,
-        {
-            ...req.body
-        },
+
+        req.body.newDate
+        ,
         function (err, docs) {
             if (err) {
                 console.error(err)

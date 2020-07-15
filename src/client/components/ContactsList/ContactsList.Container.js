@@ -25,8 +25,21 @@ const ContactsListContainer = (props) => {
         ])
 
     const onSubmit = (formDate) => {
-        // updateContactS(idEdit, formDate)
-        console.log("Error", formDate, idEdit)
+
+        let objUpdateContact = { numbers: [] }
+        for (let key in formDate) {
+            if (key !== "_id") {
+                if (!key.indexOf("Number")) {
+
+                    objUpdateContact.numbers.push(formDate[key])
+                }
+                else {
+                    objUpdateContact = { [key]: formDate[key], ...objUpdateContact }
+                }
+            }
+
+        }
+        props.updateContact(idEdit, objUpdateContact)
     }
 
     let counter = 0
@@ -38,7 +51,6 @@ const ContactsListContainer = (props) => {
 
     const setInitialValue = (initialize) => {
         let oldContact = {}
-        console.log(editContact)
         function upContact(key, item) {
             return oldContact = { [key]: item, ...oldContact }
         }
@@ -122,7 +134,7 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         deleteContact: (id) => deleteContactS(dispatch, id),
-        updateContactS: (id, newData) => updateContactS(dispatch, id, newData)
+        updateContact: (id, newData) => updateContactS(dispatch, id, newData)
     }
 }
 export default compose(

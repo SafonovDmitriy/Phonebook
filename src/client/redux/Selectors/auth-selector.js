@@ -13,10 +13,8 @@ export const setNewContactS = (dispatch, user) => {
 }
 
 export const deleteContactS = (dispatch, id) => {
-
     return dispatch(deleteContactT(id))
 }
 export const updateContactS = (dispatch, id, newData) => {
-    console.log(id, newData)
     return dispatch(updateContactT(id, newData))
 }

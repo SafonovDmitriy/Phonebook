@@ -13,17 +13,17 @@ const NewContact = (props) => {
             { name: "surename", placeholder: "Surename", validate: [textOnly] },
             { name: "email", placeholder: "Email", validate: [] },
             { name: "company", placeholder: "Company", validate: [textOnly] },
-            { name: "image", placeholder: "URLforAvatar", validate: [] },
+
 
         ])
     let [arrNumbers, setArrNumbers] = useState(
         [
             { name: "number", placeholder: "Number", validate: [onlyNumber, requiredFuild] },
         ]
-
-
-
     )
+
+
+
     function updateForm() {
         let arr = []
         arrInput.map(item => { return arr.push(item) })
@@ -43,20 +43,28 @@ const NewContact = (props) => {
 
     }
 
+
+
     return <div className={s.newForm}>
+
         <Form>
 
             <form onSubmit={props.handleSubmit} className={s.form}>
                 <h2>Add Contact Form</h2>
-
+                {/* // { name: "image", placeholder: "URLforAvatar", validate: [] }, */}
                 <Form>
                     {newForm()}
+
+                    <input type='file' onChange={props.onMeinPhotoSelect} />
+
+
                     <Form.Field
                         id='form-button-control-public'
                         control={Button}
                         content='Confirm'
 
                     />
+
                 </Form>
                 <span onClick={() => {
                     let newNubmersArr = []

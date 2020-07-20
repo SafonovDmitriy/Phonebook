@@ -13,7 +13,7 @@ const ContactsList = React.memo(({ idToggle, setToggle, idEdit, setEdit, editCon
             return <div className={s.oneItem}>
 
                 <div className={s.photo}>
-                    <Image alt={contact.name + ' ' + contact.surename} src={!contact.image  ? defaultAvatar : contact.image} />
+                    <Image alt={contact.name + ' ' + contact.surename} src={!contact.image ? defaultAvatar : contact.image} />
                 </div>
                 {idEdit !== contact._id ? <div className={s.content}>
                     <div className={s.fullName}>
@@ -21,15 +21,15 @@ const ContactsList = React.memo(({ idToggle, setToggle, idEdit, setEdit, editCon
                     </div>
                     <div className={s.info}>
                         <List>
-                            <List.Item>
+                            {contact.company && <List.Item>
                                 <List.Icon name='meh' />   Company: {contact.company}
-                            </ List.Item>
-                            <List.Item>
+                            </ List.Item>}
+                            {contact.email && <List.Item>
                                 <List.Icon name='mail' />   Email: {contact.email}
-                            </ List.Item>
-                            <List.Item>
-                                <List.Icon name='phone square' />   {contact.numbers.length > 1 ? "Numbers : " + contact.numbers.map(item => { return item }) : "Number:" + contact.numbers[0]}
-                            </ List.Item>
+                            </ List.Item>}
+                            {contact.numbers.length !== 0 && <List.Item>
+                                <List.Icon name='phone square' />   {contact.numbers.length > 1 ? "Numbers : " + contact.numbers.map(item => { return item }) : "Number : " + contact.numbers[0]}
+                            </ List.Item>}
                         </List>
                     </div>
 

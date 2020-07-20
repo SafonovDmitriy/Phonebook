@@ -54,6 +54,7 @@ export const getFullContactsList = () => {
 }
 export const setNewContact = (user) => {
     return async (dispatch) => {
+        console.log(user)
         let res = await setNewContactAPI(user)
         if (res.status === 200) {
             let contact = await getContacts()

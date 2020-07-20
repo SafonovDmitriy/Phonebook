@@ -41,7 +41,7 @@ exports.update = function (req, res) {
                 return res.sendStatus(500)
             }
 
-            res.send(docs)
+            res.json(docs)
         })
 }
 exports.delete = function (req, res) {

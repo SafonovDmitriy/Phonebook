@@ -13,7 +13,8 @@ export const getContacts = async () => {
     return res.data
 }
 export const setNewContactAPI = async (user) => {
-    let res = await instance.post('contact', { ...user })
+    console.log(user)
+    let res = await instance.post('contact', user)
     return res
 }
 export const deleteContactAPI = async (idContact) => {

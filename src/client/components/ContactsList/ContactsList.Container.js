@@ -18,7 +18,7 @@ const ContactsListContainer = (props) => {
             { name: "surename", validate: [textOnly], label: "Surename" },
             { name: "email", validate: [], label: "Email" },
             { name: "company", validate: [textOnly], label: "Company" },
-            { name: "image", label: "URL", validate: [] },
+            { name: "image", validate: [], label: "URLforAvatar" },
         ])
     const [arrNumbers, setArrNumbers] = useState(
         [
@@ -31,8 +31,9 @@ const ContactsListContainer = (props) => {
         for (let key in formDate) {
             if (key !== "_id") {
                 if (!key.indexOf("Number")) {
-
-                    objUpdateContact.numbers.push(formDate[key])
+                    if (formDate[key] !== "") {
+                        objUpdateContact.numbers.push(formDate[key])
+                    }
                 }
                 else {
                     objUpdateContact = { [key]: formDate[key], ...objUpdateContact }
@@ -41,6 +42,7 @@ const ContactsListContainer = (props) => {
 
         }
         props.updateContact(idEdit, objUpdateContact)
+        console.log(objUpdateContact)
     }
 
     let counter = 0

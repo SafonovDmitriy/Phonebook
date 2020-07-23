@@ -1,0 +1,22 @@
+.form {
+    float: right;
+    margin: 1vh auto;
+    /* grid-template-areas: "i b"; */
+}
+
+.searchInput {
+    grid-area: i;
+    margin-right: 5px;
+    -webkit-box-flex: 1;
+    flex: 1 0 auto;
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    padding: .47857143em 1em;
+    border: 1px solid rgba(34, 36, 38, .15);
+    border-radius: 25px;
+}
+
+.searchButton {
+    grid-area: b;
+    width: 50px;
+    height: 50px;
+}

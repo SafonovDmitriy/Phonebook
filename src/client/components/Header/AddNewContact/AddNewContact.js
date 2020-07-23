@@ -51,11 +51,10 @@ const NewContact = (props) => {
 
             <form onSubmit={props.handleSubmit} className={s.form}>
                 <h2>Add Contact Form</h2>
-                {/* // { name: "image", placeholder: "URLforAvatar", validate: [] }, */}
                 <Form>
                     {newForm()}
 
-                    <input type='file' onChange={props.onMeinPhotoSelect} />
+                    <input type='file' onChange={props.onMeinPhotoSelect} accept=".jpg, .jpeg, .png" />
 
 
                     <Form.Field

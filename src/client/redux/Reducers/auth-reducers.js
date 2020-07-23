@@ -34,6 +34,8 @@ const AuthReducer = (state = initialState, active) => {
             return {
                 ...state, allContacts: newContacts
             }
+        case "SET_SEARCH":
+            return { ...state, search: active.textSearch }
 
 
 
@@ -44,6 +46,7 @@ const AuthReducer = (state = initialState, active) => {
 export const getAllContacts = (contacts) => ({ type: "GET_ALL_CONTACTS", contacts })
 export const deleteContact = (idContact) => ({ type: "DELETE_CONTACT", idContact })
 export const updateContact = (idContact, newData) => ({ type: "UPDATE_CONTACT", idContact, newData })
+export const setSearch = (textSearch) => ({ type: "SET_SEARCH", textSearch })
 
 
 export const getFullContactsList = () => {
@@ -54,7 +57,6 @@ export const getFullContactsList = () => {
 }
 export const setNewContact = (user) => {
     return async (dispatch) => {
-        console.log(user)
         let res = await setNewContactAPI(user)
         if (res.status === 200) {
             let contact = await getContacts()

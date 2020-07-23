@@ -4,9 +4,9 @@ import { compose } from 'redux';
 import { onlyNumber, requiredFuild, textOnly } from '../../../utils/validators/validators';
 import { deleteContactS, getAllContact, updateContactS } from './../../redux/Selectors/auth-selector';
 import ContactsList from './ContactsList';
+import resizeImage from '../../common/optimizeImage/optimizeImage';
 
 const ContactsListContainer = (props) => {
-
 
 
     const [idToggle, setToggle] = useState(undefined)
@@ -18,16 +18,15 @@ const ContactsListContainer = (props) => {
             { name: "surename", validate: [textOnly], label: "Surename" },
             { name: "email", validate: [], label: "Email" },
             { name: "company", validate: [textOnly], label: "Company" },
-            { name: "image", validate: [], label: "URLforAvatar" },
         ])
     const [arrNumbers, setArrNumbers] = useState(
         [
             // { name: "number", placeholder: "Number", validate: [onlyNumber] },
         ])
-
+    let objUpdateContact = { numbers: [] }
     const onSubmit = (formDate) => {
+        console.log(objUpdateContact)
 
-        let objUpdateContact = { numbers: [] }
         for (let key in formDate) {
             if (key !== "_id") {
                 if (!key.indexOf("Number")) {
@@ -38,11 +37,22 @@ const ContactsListContainer = (props) => {
                 else {
                     objUpdateContact = { [key]: formDate[key], ...objUpdateContact }
                 }
+
             }
 
         }
-        props.updateContact(idEdit, objUpdateContact)
         console.log(objUpdateContact)
+
+        props.updateContact(idEdit, objUpdateContact)
+    }
+
+    const onMeinPhotoSelect = async (e) => {
+        if (e.target.files.length) {
+
+            let newImage
+            newImage = await resizeImage(e.target.files[0])
+            objUpdateContact = ({ image: newImage, ...objUpdateContact })
+        }
     }
 
     let counter = 0
@@ -125,13 +135,14 @@ const ContactsListContainer = (props) => {
             initArr={initArr}
             addNumber={addNumber}
             setInitialValue={setInitialValue}
+            onMeinPhotoSelect={onMeinPhotoSelect}
 
         />
     </div>
 }
 let mapStateToProps = (state) => {
     return {
-        allContact: getAllContact(state)
+        allContact: getAllContact(state),
     }
 }
 let mapDispatchToProps = (dispatch) => {

@@ -13,7 +13,6 @@ export const getContacts = async () => {
     return res.data
 }
 export const setNewContactAPI = async (user) => {
-    console.log(user)
     let res = await instance.post('contact', user)
     return res
 }

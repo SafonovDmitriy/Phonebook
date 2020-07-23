@@ -3,9 +3,10 @@ import s from './ContactsList.module.css';
 import { Image, List, Button, Form } from 'semantic-ui-react'
 import { reduxForm, Field } from 'redux-form';
 import { CastomInput } from './../FormsControls/Form';
-const defaultAvatar = "https://images.ua.prom.st/1440764527_saharnaya-kartinka-lyubov.jpg"
+let defaultAvatar = "https://images.ua.prom.st/1065621053_w128_h128_vafelnaya-kartinka-lyubov.jpg"
 
-const ContactsList = React.memo(({ idToggle, setToggle, idEdit, setEdit, editContact, setEditContact, arrInput, arrNumbers, setArrNumbers, onSubmit, initArr, addNumber, ...props }) => {
+const ContactsList = React.memo(({ searchValue, idToggle, setToggle, idEdit, setEdit, editContact, setEditContact, arrInput, arrNumbers, setArrNumbers, onSubmit, initArr, addNumber, ...props }) => {
+
 
     return <div className={s.Wrapper}>
         {props.allContact.map(contact => {
@@ -50,8 +51,9 @@ const ContactsList = React.memo(({ idToggle, setToggle, idEdit, setEdit, editCon
 
                     </div>}
                 <div>
-                    {idEdit !== contact._id && < Button onClick={() => initArr(contact)}>Edit</Button>}
+                    {idEdit !== contact._id && < Button type="button" onClick={() => initArr(contact)}>Edit</Button>}
                 </div>
+
                 <div className={s.deleteButton} onClick={() => { setEdit(undefined); setToggle(contact._id); }}>
                     {idToggle !== contact._id && < List.Item >
                         <List.Icon name='delete' />
@@ -59,8 +61,8 @@ const ContactsList = React.memo(({ idToggle, setToggle, idEdit, setEdit, editCon
                 </div>
                 {
                     idToggle === contact._id && <div className={s.deal}><h3>Do you really go to remove this contact?</h3>
-                        <Button onClick={() => { props.deleteContact(contact._id); setToggle(undefined) }}>OK</Button>
-                        <Button onClick={() => setToggle(undefined)}>Сancel</Button>
+                        <Button type="submit" onClick={() => { props.deleteContact(contact._id); setToggle(undefined) }}>OK</Button>
+                        <Button type="button" onClick={() => setToggle(undefined)}>Сancel</Button>
 
                     </div>
                 }
@@ -82,6 +84,7 @@ const editForm = ({ contact, setEditContact, setArrNumbers, arrInput, arrNumbers
                     <Field name={item.name} validate={item.validate} component={CastomInput} />
                 </Form.Field>
             })}
+            <input type='file' onChange={props.onMeinPhotoSelect} accept=".jpg, .jpeg, .png" />
             {arrNumbers.map(item => {
 
                 return <Form.Field>
@@ -90,11 +93,11 @@ const editForm = ({ contact, setEditContact, setArrNumbers, arrInput, arrNumbers
                 </Form.Field>
             })}
             <div className={s.buttoms}>
-                <Button onClick={() => setInitialValue(props.initialize)}>Saved data</Button>
-                <Button onClick={() => addNumber()
+                <Button type="button" onClick={() => setInitialValue(props.initialize)}>Saved data</Button>
+                <Button type="button" onClick={() => addNumber()
                 }>Add Number</Button>
-                <Button >Save</Button>
-                <Button onClick={() => { props.setEdit(undefined) }}>Сancel</Button>
+                <Button type="submit">Save</Button>
+                <Button type="button" onClick={() => { props.setEdit(undefined) }}>Сancel</Button>
             </div>
         </Form>
     </form >

@@ -1,17 +1,20 @@
 
-import { getContacts, setNewContactAPI, deleteContactAPI, updateContactAPI } from './../../api/api';
-
+import { getContacts, setNewContactAPI, deleteContactAPI, updateContactAPI } from '../../api/api';
+import { contactType } from '../../types/types';
 
 
 let initialState = {
-    allContacts: []
+    allContacts: [] as Array<contactType>,
+    search: ""
 }
-
-const AuthReducer = (state = initialState, active) => {
+export type initialStateType = typeof initialState
+const AuthReducer = (state = initialState, active: any): initialStateType => {
     switch (active.type) {
         case "GET_ALL_CONTACTS":
             return {
+
                 ...state, allContacts: active.contacts
+
             }
         case "DELETE_CONTACT":
             return {
@@ -23,7 +26,7 @@ const AuthReducer = (state = initialState, active) => {
                 })
             }
         case "UPDATE_CONTACT":
-            let newContacts = []
+            let newContacts: Array<contactType> = []
             state.allContacts.map(item => {
                 if (item._id === active.idContact) {
                     return newContacts.push({ _id: active.idContact, ...active.newData })
@@ -42,21 +45,37 @@ const AuthReducer = (state = initialState, active) => {
         default: return state
     }
 }
-
-export const getAllContacts = (contacts) => ({ type: "GET_ALL_CONTACTS", contacts })
-export const deleteContact = (idContact) => ({ type: "DELETE_CONTACT", idContact })
-export const updateContact = (idContact, newData) => ({ type: "UPDATE_CONTACT", idContact, newData })
-export const setSearch = (textSearch) => ({ type: "SET_SEARCH", textSearch })
+type getAllContactsType = {
+    type: "GET_ALL_CONTACTS",
+    contacts: Array<contactType>
+}
+export const getAllContacts = (contacts: Array<contactType>): getAllContactsType => ({ type: "GET_ALL_CONTACTS", contacts })
+type deleteContactType = {
+    type: "DELETE_CONTACT"
+    idContact: String
+}
+export const deleteContact = (idContact: String): deleteContactType => ({ type: "DELETE_CONTACT", idContact })
+type updateContactType = {
+    type: "UPDATE_CONTACT",
+    idContact: String
+    newData: contactType
+}
+export const updateContact = (idContact: String, newData: contactType): updateContactType => ({ type: "UPDATE_CONTACT", idContact, newData })
+type setSearchType = {
+    type: "SET_SEARCH"
+    textSearch: String
+}
+export const setSearch = (textSearch: String): setSearchType => ({ type: "SET_SEARCH", textSearch })
 
 
 export const getFullContactsList = () => {
-    return async (dispatch) => {
+    return async (dispatch: any) => {
         let contact = await getContacts()
         dispatch(getAllContacts(contact))
     }
 }
-export const setNewContact = (user) => {
-    return async (dispatch) => {
+export const setNewContact = (user: contactType) => {
+    return async (dispatch: any) => {
         let res = await setNewContactAPI(user)
         if (res.status === 200) {
             let contact = await getContacts()
@@ -64,16 +83,16 @@ export const setNewContact = (user) => {
         }
     }
 }
-export const deleteContactT = (id) => {
-    return (dispatch) => {
+export const deleteContactT = (id: String) => {
+    return (dispatch: any) => {
         deleteContactAPI(id).then(res => {
             dispatch(deleteContact(id));
         })
     }
 }
 
-export const updateContactT = (id, newData) => {
-    return async (dispatch) => {
+export const updateContactT = (id: String, newData: contactType) => {
+    return async (dispatch: any) => {
         let res = await updateContactAPI(id, newData)
         if (res.status === 200) {
             dispatch(updateContact(id, newData))
